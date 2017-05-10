@@ -46,8 +46,8 @@ class BlockMatrixMultTest(sc: SparkContext) extends PerfTest {
       blockSize: Int,
       numPartitions: Int,
       seed: Long): BlockMatrix = {
-    val numRowBlocks = math.ceil(m / blockSize).toInt
-    val numColBlocks = math.ceil(n / blockSize).toInt
+    val numRowBlocks = math.ceil(m / blockSize.toDouble).toInt
+    val numColBlocks = math.ceil(n / blockSize.toDouble).toInt
     val sqrtParts = math.ceil(math.sqrt(numPartitions)).toInt
     val rowBlockIds = sc.parallelize(0 until numRowBlocks, sqrtParts)
     val colBlockIds = sc.parallelize(0 until numColBlocks, sqrtParts)
